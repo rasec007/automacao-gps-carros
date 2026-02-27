@@ -19,15 +19,19 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar código do projeto
 COPY . .
 
-# Configurar cron para rodar às 06:00 (horário de Fortaleza/Brasília-3)
+# Configurar crons:
+# 06:00 - Importação de Posições
+# 07:00 - Atualização de OBTs
 RUN echo "0 6 * * * root cd /app && python execution/importar_posicoes.py >> /var/log/importacao.log 2>&1" \
-    > /etc/cron.d/importacao
+    > /etc/cron.d/importacao && \
+    echo "0 7 * * * root cd /app && python execution/atualiza_obt.py >> /var/log/atualiza_obt.log 2>&1" \
+    >> /etc/cron.d/importacao
 
 # Dar permissão ao arquivo de cron
 RUN chmod 0644 /etc/cron.d/importacao
 
-# Criar arquivo de log
-RUN touch /var/log/importacao.log
+# Criar arquivos de log para ambos os fluxos
+RUN touch /var/log/importacao.log && touch /var/log/atualiza_obt.log
 
 # Script de entrada
 COPY entrypoint.sh /entrypoint.sh
