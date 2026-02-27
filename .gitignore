@@ -4,4 +4,3 @@ credentials.json
 token.json
 __pycache__/
 *.pyc
-verificar_ambiente.py
