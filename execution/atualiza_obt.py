@@ -15,8 +15,8 @@ load_dotenv()
 URL_OBT = "https://integrapsjapi.sda.ce.gov.br/api/ServicoEparceria/ConsumirGetComAutenticacaoAsyncMonitoramentoObt/sda/dWNhcFALfpLfXhygv94/0"
 
 # Timeout progressivo: a cada tentativa, o tempo dobra
-# 1ª tentativa: 180s | 2ª: 360s | 3ª: 540s
-TIMEOUTS_PROGRESSIVOS = [180, 360, 540]
+# 1ª tentativa: 360s | 2ª: 720s | 3ª: 1080s
+TIMEOUTS_PROGRESSIVOS = [360, 720, 1080]
 MAX_TENTATIVAS = len(TIMEOUTS_PROGRESSIVOS)
 DELAY_ENTRE_TENTATIVAS = 10  # segundos de espera entre tentativas
 
