@@ -22,9 +22,9 @@ COPY . .
 # Configurar crons:
 # 06:00 - Importação de Posições
 # 07:00 - Atualização de OBTs
-RUN echo "0 6 * * * root cd /app && /usr/local/bin/python execution/importar_posicoes.py >> /var/log/importacao.log 2>&1" \
+RUN echo "30 6 * * * root cd /app && /usr/local/bin/python execution/importar_posicoes.py >> /var/log/importacao.log 2>&1" \
     > /etc/cron.d/importacao && \
-    echo "0 7 * * * root cd /app && /usr/local/bin/python execution/atualiza_obt.py >> /var/log/atualiza_obt.log 2>&1" \
+    echo "30 7 * * * root cd /app && /usr/local/bin/python execution/atualiza_obt.py >> /var/log/atualiza_obt.log 2>&1" \
     >> /etc/cron.d/importacao
 
 # Dar permissão ao arquivo de cron
